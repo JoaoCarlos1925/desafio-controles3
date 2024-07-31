@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva</title>
+    <style>
+        #result {
+            font-size: 2em;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contagem Regressiva</h1>
+    <p>Digite um número para iniciar a contagem regressiva (ou 0 para sair):</p>
+    <input type="number" id="number" min="0">
+    <button onclick="startCountdown()">Iniciar Contagem</button>
+    <div id="result"></div>
+
+    <script>
+        function startCountdown() {
+            let numero = document.getElementById("number").value;
+            let result = document.getElementById("result");
+
+            // Verifica se a entrada é válida
+            if (numero === "") {
+                result.innerHTML = "Por favor, digite um número.";
+                return;
+            }
+
+            numero = parseInt(numero);
+
+            // Verifica se o usuário quer sair
+            if (numero === 0) {
+                result.innerHTML = "Saindo do programa.";
+                return;
+            }
+
+            // Realiza a contagem regressiva
+            result.innerHTML = `Contagem regressiva a partir de ${numero}:`;
+            let countdown = numero;
+            let interval = setInterval(() => {
+                result.innerHTML = `<p>${countdown}</p>`;
+                countdown--;
+
+                // Verifica se a contagem regressiva terminou
+                if (countdown < 0) {
+                    clearInterval(interval);
+                    result.innerHTML = `<p>Contagem regressiva finalizada!</p>`;
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
